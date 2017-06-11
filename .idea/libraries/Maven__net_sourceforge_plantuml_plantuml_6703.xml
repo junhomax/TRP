@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: net.sourceforge.plantuml:plantuml:6703">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/sourceforge/plantuml/plantuml/6703/plantuml-6703.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/net/sourceforge/plantuml/plantuml/6703/plantuml-6703-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/sourceforge/plantuml/plantuml/6703/plantuml-6703-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
