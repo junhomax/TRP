@@ -24,6 +24,7 @@ public class MorphemeAnalyzer {
         return isSuccess;
     }
 
+
     public List<String> getMorphList(String input) {
         return getMorphList(input, null, false);
     }
