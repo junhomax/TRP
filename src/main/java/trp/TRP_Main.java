@@ -4,13 +4,17 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 import org.apache.log4j.PropertyConfigurator;
 
+import trp.configurator.Configurator;
 
+import java.io.IOException;
 import java.util.Properties;
+
+import javax.security.auth.login.Configuration;
 
 /**
  * Created by Junho on 2017. 6. 10..
  */
-public class Main {
+public class TRP_Main {
     /*
         DEFAULT Commandline Options
      */
@@ -18,7 +22,20 @@ public class Main {
     public static final String ARG_PID      = "pid";
 
     public static void main( String[] args ) {
-
+    	try{
+    		System.out.println("Initializing configurator...");
+    		Configurator.getInstance().init(args[0]);
+    	} catch (IOException e){
+    		System.out.println("Cannot find config file in " + args[0] + ". IOException occurred.");
+    	} catch (Exception e){
+    		System.out.println("Unhandled exception occuured");
+    		e.printStackTrace();
+    	}
+    	
+    	System.out.println("Server Home:\t" + Configurator.getInstance().getServer_home());
+    	System.out.println("Server LogPath:\t" + Configurator.getInstance().getServer_logPath());
+    	System.out.println("Server LogLevel:\t" + Configurator.getInstance().getServer_logLevel());
+    	setLogger(Configurator.getInstance().getServer_logLevel(), Configurator.getInstance().getServer_logPath());
     }
 
 
