@@ -5,6 +5,7 @@ import org.apache.commons.cli.Options;
 import org.apache.log4j.PropertyConfigurator;
 
 import trp.configurator.Configurator;
+import trp.nlp.MorphemeAnalyzer;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -35,37 +36,13 @@ public class TRP_Main {
     	System.out.println("Server Home:\t" + Configurator.getInstance().getServer_home());
     	System.out.println("Server LogPath:\t" + Configurator.getInstance().getServer_logPath());
     	System.out.println("Server LogLevel:\t" + Configurator.getInstance().getServer_logLevel());
-    	setLogger(Configurator.getInstance().getServer_logLevel(), Configurator.getInstance().getServer_logPath());
+    	MorphemeAnalyzer.getInstance().initialize(Configurator.getInstance().getServer_knowledgePath());
+    	
+    	
     }
 
 
-    /**
-     * Setting Log configuration for Dialog Manager
-     * @param logLevel_
-     * @param logFilePath_
-     */
-    public static void setLogger( String logLevel_, String logFilePath_ ) {
-        Properties properties = new Properties();
-        /*
-            Default log settings
-         */
-        properties.setProperty( "log4j.rootLogger", "TRACE, stdout, rolling" );
-        properties.setProperty( "log4j.appender.stdout", "org.apache.log4j.ConsoleAppender" );
-        properties.setProperty( "log4j.appender.stdout.layout", "org.apache.log4j.PatternLayout" );
-        properties.setProperty( "log4j.appender.stdout.layout.ConversionPattern", "%t> [%d{yyyy-MM-dd HH:mm:ss}] [%c{1}] [%L] [%p] %m %n" );
-        properties.setProperty( "log4j.appender.rolling", "org.apache.log4j.DailyRollingFileAppender" );
-        properties.setProperty( "log4j.appender.rolling.encoding", "UTF-8" );
-        properties.setProperty( "log4j.appender.rolling.layout", "org.apache.log4j.PatternLayout" );
-        properties.setProperty( "log4j.appender.rolling.layout.ConversionPattern", "%t> [%d{yyyy-MM-dd HH:mm:ss}] [%c{1}] [%L] [%p] %m %n" );
-        properties.setProperty( "log4j.appender.rolling.DatePattern", "'-'yyyy-MM-dd'.log'" );
-
-        /**
-         * Change second parameter
-         */
-        properties.setProperty( "log4j.appender.stdout.Threshold", logLevel_ );
-        properties.setProperty( "log4j.appender.rolling.File", logFilePath_ );
-        PropertyConfigurator.configure( properties );
-    }
+   
 
     /**
      * Check whethere there is config option in executable parameter or not.
